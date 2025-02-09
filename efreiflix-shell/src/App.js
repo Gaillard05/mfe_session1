@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 
 const Header = React.lazy(() => import('header/Header'));
+const Footer = React.lazy(() => import('footer/Footer'));
 
 const App = () => {
   return (
@@ -13,6 +14,10 @@ const App = () => {
         <h2>Bienvenue sur Efreiflix</h2>
         <p>Contenu principal de l'application...</p>
       </main>
+
+      <Suspense fallback={<div>Chargement du footer...</div>}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

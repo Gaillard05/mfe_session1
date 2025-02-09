@@ -52,7 +52,7 @@ module.exports = {
       name: 'header', // Nom UNIQUE du Micro Frontend (utilisé par le Shell pour l'importer)
       filename: 'remoteEntry.js', // Nom du fichier d'entrée exposé (conventionnel)
       exposes: {
-        './Header': './src/Header', // Expose le composant Header (chemin relatif)
+        './Footer': './src/Footer',
       },
       shared: { // Configuration des dépendances partagées
         ...dependencies, // Partage toutes les dépendances listées, en s'assurant qu'il y a une seule version pour chaque MFE.
