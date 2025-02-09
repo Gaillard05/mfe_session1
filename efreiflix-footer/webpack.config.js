@@ -1,14 +1,15 @@
 /**
- * Configuration Webpack pour le micro-frontend Header
+ * Configuration Webpack pour le micro-frontend Footer
  * 
  * Ce fichier configure un micro-frontend qui sera consommé par l'application Shell.
- * Il expose un composant Header qui pourra être importé dynamiquement.
+ * Il expose un composant Footer qui pourra être importé dynamiquement.
  * 
  * Points clés :
  * - Exposition du composant via Module Federation
  * - Configuration du port de développement standalone
  * - Gestion des dépendances partagées avec le Shell
  * - Support du développement indépendant
+
  */
 
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
@@ -20,12 +21,14 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://localhost:3001/', // URL publique de base pour les assets (IMPORTANT pour Module Federation)
+    publicPath: 'http://localhost:3002/', // URL publique de base pour les assets (IMPORTANT pour Module Federation)
+
   },
   devServer: {
-    port: 3001, // Port du serveur de développement (IMPORTANT : doit être unique pour chaque MFE)
+    port: 3002, // Port du serveur de développement (IMPORTANT : doit être unique pour chaque MFE)
     static: {
       directory: path.join(__dirname, 'public'),
+
     },
     headers: { // Configuration des en-têtes CORS (Cross-Origin Resource Sharing)
       'Access-Control-Allow-Origin': '*', // Autoriser toutes les origines (pour le développement)
@@ -49,12 +52,12 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'header', // Nom UNIQUE du Micro Frontend (utilisé par le Shell pour l'importer)
+      name: 'footer', // Nom UNIQUE du Micro Frontend (utilisé par le Shell pour l'importer)
       filename: 'remoteEntry.js', // Nom du fichier d'entrée exposé (conventionnel)
       exposes: {
-        './Header': './src/Header',
-      },
 
+        './Footer': './src/Footer',
+      },
       shared: { // Configuration des dépendances partagées
         ...dependencies, // Partage toutes les dépendances listées, en s'assurant qu'il y a une seule version pour chaque MFE.
         react: { singleton: true, requiredVersion: dependencies.react }, // Partage React (IMPORTANT : une seule instance de React)

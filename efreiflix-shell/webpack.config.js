@@ -42,7 +42,7 @@ module.exports = {
         // Déclaration du micro-frontend Header
         // Format: "nom_remote@url/fichier_entree.js"
         header: 'header@http://localhost:3001/remoteEntry.js', // Configuration pour consommer le MFE 'header'
-        footer: 'footerMFE@http://localhost:3002/remoteEntry.js',
+        footer: 'footer@http://localhost:3002/remoteEntry.js',
         // exemple de footer
         // footer: 'footer@http://localhost:3002/remoteEntry.js', // Configuration pour consommer le MFE 'footer'
         // un autre exemple de MFE

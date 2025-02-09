@@ -7,7 +7,7 @@ const Header = () => {
       backgroundColor: '#1a1a1a',
       color: 'white'
     }}>
-      <h1>Efreiflix</h1>
+      <h1>Efreiflix Header</h1>
     </header>
   );
 };
