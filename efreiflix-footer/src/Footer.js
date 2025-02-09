@@ -9,7 +9,13 @@ const Footer = () => {
       color: 'white'
     }}>
 
-      <h1>Efreiflix Footer</h1>
+      <h1 style={{
+        fontFamily: 'Anton, sans-serif',
+        color: 'red',
+        textAlign: 'center',
+        transform: 'scale(1.2)',
+        letterSpacing: '2px'
+      }}>EfreiFlix Footer</h1>
     </footer>
   );
 };

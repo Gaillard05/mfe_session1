@@ -7,7 +7,13 @@ const Header = () => {
       backgroundColor: '#1a1a1a',
       color: 'white'
     }}>
-      <h1>Efreiflix Header</h1>
+      <h1 style={{
+        fontFamily: 'Anton, sans-serif',
+        color: 'red',
+        textAlign: 'center',
+        transform: 'scale(1.2)',
+        letterSpacing: '2px'
+      }}>EfreiFlix Header</h1>
     </header>
   );
 };
