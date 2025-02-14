@@ -7,7 +7,7 @@ const Catalogue = () => {
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [moviesByGenre, setMoviesByGenre] = useState({});
-    const rowRefs = useRef({}); // 🔥 Références pour chaque carrousel
+    const rowRefs = useRef({});
 
     useEffect(() => {
         const fetchCatalogue = async () => {
@@ -53,7 +53,7 @@ const Catalogue = () => {
                         `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=fr-FR&sort_by=popularity.desc&with_genres=${genre.id}`
                     );
                     const data = await response.json();
-                    newMoviesByGenre[genre.name] = data.results.slice(0, 10);
+                    newMoviesByGenre[genre.name] = data.results.slice(0, 15);
                 } catch (err) {
                     console.error(`Erreur lors de la récupération des films pour le genre ${genre.name} :`, err);
                 }
@@ -94,8 +94,9 @@ const Catalogue = () => {
                                         {movie.release_date ? movie.release_date.split("-")[0] : "Date inconnue"}
                                     </p>
 
-                                    <p className="text-sm text-gray-400 mb-4 line-clamp-3">
-                                        {movie.overview ? movie.overview.substring(0, 100) + "..." : "Aucune description"}
+                                    {/* 🔥 Description plus longue avec gestion des dépassements */}
+                                    <p className="text-md text-gray-300 mt-2 overflow-hidden line-clamp-10">
+                                        {movie.overview ? movie.overview : "Aucune description disponible."}
                                     </p>
                                     <p className="text-sm text-yellow-400 font-bold mb-2">
                                         ⭐ {movie.vote_average} / 10
@@ -142,26 +143,27 @@ const Catalogue = () => {
                                         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                         alt={movie.title}
                                     />
-                                    <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 rounded-lg">
-                                        <h3 className="text-lg font-semibold">{movie.title}</h3>
-                                        <p className="text-sm text-gray-300 mb-1">
-                                            {movie.release_date ? movie.release_date.split("-")[0] : "Date inconnue"}
+                                    <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 rounded-xl">
+                                        <h3 className="text-2xl font-bold">{movie.title}</h3>
+                                        <p className="text-sm text-gray-400">{movie.release_date ? movie.release_date.split("-")[0] : "Date inconnue"}</p>
+
+                                        {/* 🔥 Description plus longue avec gestion des dépassements */}
+                                        <p className="text-md text-gray-300 mt-2 overflow-hidden line-clamp-10">
+                                            {movie.overview ? movie.overview : "Aucune description disponible."}
                                         </p>
-                                        <p className="text-sm text-yellow-400 font-bold mb-2">
-                                            ⭐ {movie.vote_average} / 10
-                                        </p>
-                                        <p className="text-sm text-gray-400 mb-4 line-clamp-3">
-                                            {movie.overview ? movie.overview.substring(0, 100) + "..." : "Aucune description"}
-                                        </p>
+
+                                        <div className="text-yellow-400 text-lg font-bold mt-2">⭐ {movie.vote_average} / 10</div>
+
                                         <a
                                             href={`https://www.themoviedb.org/movie/${movie.id}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="mt-2 bg-red-600 hover:bg-red-700 text-white text-sm font-bold py-2 px-4 rounded-full text-center"
+                                            className="mt-3 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-center"
                                         >
                                             Voir le film
                                         </a>
                                     </div>
+
                                 </div>
                             ))}
                         </div>
