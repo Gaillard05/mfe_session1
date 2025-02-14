@@ -65,11 +65,14 @@ function GenreDropdown({ selectedGenre, setSelectedGenre }) {
 
   useEffect(() => {
     fetch("http://0.0.0.0:2066/movies")
-      .then((response) => response.json())
-      .then((data) => {
-        const allGenres = [...new Set(data.flatMap((movie) => movie.genres))];
-        setGenres(allGenres);
-      });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => setBreadcrumbs(data))
+      .catch(error => console.error("⚠ Erreur de récupération des breadcrumbs :", error));
   }, []);
 
   const handleChange = (event) => {
