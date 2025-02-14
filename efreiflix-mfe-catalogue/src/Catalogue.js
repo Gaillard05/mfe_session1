@@ -53,14 +53,8 @@ const Catalogue = () => {
                   </p>
                   <p className="text-lg mb-4">{movie.overview.substring(0, 100)}...</p>
                   <p className="text-lg font-semibold mb-2 text-white">{movie.vote_average} / 10</p>
-                  <a
-                    href={`https://www.themoviedb.org/movie/${movie.id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="my-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center">
-                      <span>Voir le film</span>
-                    </button>
+                  <a href="#" className="my-2 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full inline-flex items-center">
+                    <span>Voir le film</span>
                   </a>
                 </div>
               </div>
