@@ -1,10 +1,10 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Catalogue from './Catalogue';
+import RandomMovie from './RandomMovie';
 
 const mount = (el) => {
   const root = createRoot(el);
-  root.render(<Catalogue />);
+  root.render(<RandomMovie />);
   return root;
 };
 
